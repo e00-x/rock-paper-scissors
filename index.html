@@ -1,0 +1,107 @@
+loaded
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>R.P.S</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script async defer>
+        console.log(`Let's play rock, paper, scissors`)
+        round();
+
+        function round() {
+
+            const options = [
+                "SCISSORS",
+                "ROCK",
+                "PAPER"
+            ]
+
+            var usersChoice
+            var computersChoiceLogic;
+            var computersChoice = options[computersTurn.computersChoiceLogic];
+
+            compare(computersTurn(), usersTurn())
+
+            // function usersTurn(usersChoice) {
+            //     usersChoice = prompt(`Your turn. pick 0,1,2`);
+            //     // <button onclick="">submit</button>
+            //     return usersChoice.toUpperCase();
+            //     console.log(`User chose ${usersChoice}`)
+            // }
+
+            function usersTurn() {
+
+                //THE USER NEEDS TO SELECT. THIS IS GIVING THEM A RANDOM NUMBER
+
+                var usersChoice = "SCISSORS"
+
+                // return usersChoice = math.floor(math.random * options.length)
+                console.log(`user's turn ${usersChoice}`)
+                //ARE THE CORRECT THINGS BEING LOGGED??
+            }
+
+            function computersTurn() {
+                console.log("computer is starting")
+                computersChoiceLogic = Math.floor(Math.random() * options.length)
+                console.log(computersChoiceLogic)
+                console.log(`in progress...`)
+                return computersChoiceLogic
+                console.log(`out...`)
+            }
+            console.log(`cc: ${computersChoice}`)
+
+            // function computersTurn(computersChoice) {
+            //     console.log("computer is starting")
+            //     var computersChoice = computersChoice[math.floor(math.random * enums.length)]
+            //     return computersChoice.toUpperCase();
+            //     console.log("computer has played")
+            // }
+
+            // function compare(computersTurn, usersTurn) {
+
+            function compare(computersChoice, usersChoice) {
+
+                console.log(`comparing: ${computersChoice}, and ${usersChoice}`)
+
+                if (computersChoice == usersChoice) {
+                    console.log(`cc: ${computersChoice}, uc: ${usersChoice}`)
+                    console.log("this round is a tie")
+                }
+                else if (computersChoice == "SCISSORS" && usersChoice == "PAPER") {
+                    console.log("computer wins!!")
+                }
+                else if (computersChoice == enums.paper && usersChoice == enums.rock) {
+                    console.log("computer wins!!")
+                }
+                else if (computersChoice == enums.rock && usersChoice == enums.scissors) {
+                    console.log("computer wins!!")
+                } else {
+                    console.log("User wins!!")
+                }
+
+            }
+            // computersTurn()
+            // usersTurn()
+        }
+
+        // round()
+    </script>
+</body>
+
+</html>
