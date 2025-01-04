@@ -1,9 +1,4 @@
 loaded
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
 
 <head>
@@ -16,91 +11,85 @@ loaded
 </head>
 
 <body>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
     <script async defer>
         console.log(`Let's play rock, paper, scissors`)
-        round();
+        playGame()
 
-        function round() {
 
-            const options = [
-                "SCISSORS",
-                "ROCK",
-                "PAPER"
-            ]
-
-            var usersChoice
-            var computersChoiceLogic;
-            var computersChoice = options[computersTurn.computersChoiceLogic];
-
-            compare(computersTurn(), usersTurn())
-
-            // function usersTurn(usersChoice) {
-            //     usersChoice = prompt(`Your turn. pick 0,1,2`);
-            //     // <button onclick="">submit</button>
-            //     return usersChoice.toUpperCase();
-            //     console.log(`User chose ${usersChoice}`)
-            // }
-
-            function usersTurn() {
-
-                //THE USER NEEDS TO SELECT. THIS IS GIVING THEM A RANDOM NUMBER
-
-                var usersChoice = "SCISSORS"
-
-                // return usersChoice = math.floor(math.random * options.length)
-                console.log(`user's turn ${usersChoice}`)
-                //ARE THE CORRECT THINGS BEING LOGGED??
+        function getHumanChoice() {
+            var usersChoice = prompt("Your Turn!!", "ROCK, PAPER, SCISSORS");
+            if (usersChoice.toUpperCase() != null && usersChoice.toUpperCase() == "ROCK" || usersChoice.toUpperCase() != "PAPER" || usersChoice.toUpperCase() != "SCISSORS") {
+                console.log(`HC: ${usersChoice}`)
+                // , is an invalid choice. pick ROCK, PAPER or SCISSORS`)
+                return (usersChoice)
+            } else {
+                console.error("nothing detected");
             }
-
-            function computersTurn() {
-                console.log("computer is starting")
-                computersChoiceLogic = Math.floor(Math.random() * options.length)
-                console.log(computersChoiceLogic)
-                console.log(`in progress...`)
-                return computersChoiceLogic
-                console.log(`out...`)
-            }
-            console.log(`cc: ${computersChoice}`)
-
-            // function computersTurn(computersChoice) {
-            //     console.log("computer is starting")
-            //     var computersChoice = computersChoice[math.floor(math.random * enums.length)]
-            //     return computersChoice.toUpperCase();
-            //     console.log("computer has played")
-            // }
-
-            // function compare(computersTurn, usersTurn) {
-
-            function compare(computersChoice, usersChoice) {
-
-                console.log(`comparing: ${computersChoice}, and ${usersChoice}`)
-
-                if (computersChoice == usersChoice) {
-                    console.log(`cc: ${computersChoice}, uc: ${usersChoice}`)
-                    console.log("this round is a tie")
-                }
-                else if (computersChoice == "SCISSORS" && usersChoice == "PAPER") {
-                    console.log("computer wins!!")
-                }
-                else if (computersChoice == enums.paper && usersChoice == enums.rock) {
-                    console.log("computer wins!!")
-                }
-                else if (computersChoice == enums.rock && usersChoice == enums.scissors) {
-                    console.log("computer wins!!")
-                } else {
-                    console.log("User wins!!")
-                }
-
-            }
-            // computersTurn()
-            // usersTurn()
         }
 
-        // round()
+        function getComputerChoice() {
+            console.log("computer is starting")
+            var tmp = Math.random()
+            console.log(tmp)
+            if (tmp > 0 && tmp <= 0.3) {
+                return ComputerChoice = "ROCK"
+            } else if (tmp > 0.4 && tmp <= 0.6) {
+                return ComputerChoice = "SCISSORS"
+            } else if (tmp > 0.6 && tmp < 0.9) {
+                return ComputerChoice = "PAPER"
+            } 
+            else {
+                console.error(`out...${ComputerChoice}`)
+            }
+        }
+
+        function playGame() {
+
+            var humanScore = 0;
+            var computerScore = 0;
+
+            const humanSelection = getHumanChoice();
+            const computerSelection = getComputerChoice();
+
+            while (humanScore < 5 && computerScore < 5) {
+                playRound(humanSelection, computerSelection)
+                console.log(`HS: ${humanScore}, CS: ${computerScore}`)
+            }
+
+            function playRound(humanChoice, computersChoice) {
+
+                console.log(`comparing: ${humanSelection}, and ${computerSelection}`)
+
+                if (humanSelection == computerSelection) {
+                    console.log("this round is a tie")
+                } else if (humanSelection == "SCISSORS" && computerSelection == "PAPER") {
+                    console.log("Computer loses! SCISSORS beats PAPER")
+                    humanScore++
+                } else if (humanSelection == "PAPER" && computerSelection == "ROCK") {
+                    console.log("Computer loses! PAPER beats ROCK")
+                    humanScore++
+                } else if (humanSelection == "ROCK" && computerSelection == "SCISSORS") {
+                    console.log("Computer loses! ROCK beats SCISSORS")
+                    humanScore++
+                }
+                //COMPUTER's dubs
+                else if (computerSelection == "PAPER" && humanSelection == "ROCK") {
+                    console.log("You loses! PAPER beats ROCK")
+                    computerScore++
+                } else if (computerSelection == "SCISSORS" && humanSelection == "PAPER") {
+                    console.log("You loses! SCISSORS beats PAPER")
+                    computerScore++
+                } else if (computerSelection == "ROCK" && humanSelection == "SCISSORS") {
+                    console.log("You loses! ROCK beats SCISSORS")
+                    computerScore++
+                }
+                else {
+                    console.log("ROUND NULLIFIED")
+                }
+            }
+
+        }
+
     </script>
 </body>
 
