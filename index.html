@@ -13,14 +13,16 @@ loaded
 <body>
     <script async defer>
         console.log(`Let's play rock, paper, scissors`)
-        playGame()
+        let humanScore = 0;
+        let computerScore = 0;
+
+        callGame()
 
 
         function getHumanChoice() {
             var usersChoice = prompt("Your Turn!!", "ROCK, PAPER, SCISSORS");
-            if (usersChoice.toUpperCase() != null && usersChoice.toUpperCase() == "ROCK" || usersChoice.toUpperCase() != "PAPER" || usersChoice.toUpperCase() != "SCISSORS") {
+            if (usersChoice.toUpperCase() != null && usersChoice == "ROCK" || usersChoice != "PAPER" || usersChoice != "SCISSORS") {
                 console.log(`HC: ${usersChoice}`)
-                // , is an invalid choice. pick ROCK, PAPER or SCISSORS`)
                 return (usersChoice)
             } else {
                 console.error("nothing detected");
@@ -32,31 +34,44 @@ loaded
             var tmp = Math.random()
             console.log(tmp)
             if (tmp > 0 && tmp <= 0.3) {
-                return ComputerChoice = "ROCK"
-            } else if (tmp > 0.4 && tmp <= 0.6) {
-                return ComputerChoice = "SCISSORS"
-            } else if (tmp > 0.6 && tmp < 0.9) {
-                return ComputerChoice = "PAPER"
-            } 
-            else {
-                console.error(`out...${ComputerChoice}`)
+                console.log("CC: ROCK")
+                return "ROCK"
+            } else if (tmp > 0.3 && tmp <= 0.6) {
+                console.log("CC: SCISSORS")
+                return "SCISSORS"
+            } else if (tmp > 0.6 && tmp < 1) {
+                console.log("CC: PAPER")
+                return "PAPER"
+            } else {
+                return "LIZARD"
             }
+        }
+
+        function callGame() {
+
+            for (round = 1; round <= 5; round++) {
+                playGame()
+                console.log(`Round: ${round} => humanScore: ${humanScore}, computerScore: ${computerScore}`)
+
+                if (round == 5 && humanScore > computerScore) {
+                    alert("Game over, YOU WIN!!!")
+                } else if (round == 5 && computerScore > humanScore) {
+                    alert("Game over, COMPUTER WINS!!!")
+
+                }
+            }
+
         }
 
         function playGame() {
 
-            var humanScore = 0;
-            var computerScore = 0;
-
-            const humanSelection = getHumanChoice();
+            const humanSelection = getHumanChoice().toUpperCase();
             const computerSelection = getComputerChoice();
+            playRound(humanSelection, computerSelection)
 
-            while (humanScore < 5 && computerScore < 5) {
-                playRound(humanSelection, computerSelection)
-                console.log(`HS: ${humanScore}, CS: ${computerScore}`)
-            }
+            console.log(`playing round`)
 
-            function playRound(humanChoice, computersChoice) {
+            function playRound(humanSelection, computerSelection) {
 
                 console.log(`comparing: ${humanSelection}, and ${computerSelection}`)
 
@@ -72,6 +87,7 @@ loaded
                     console.log("Computer loses! ROCK beats SCISSORS")
                     humanScore++
                 }
+
                 //COMPUTER's dubs
                 else if (computerSelection == "PAPER" && humanSelection == "ROCK") {
                     console.log("You loses! PAPER beats ROCK")
@@ -84,8 +100,10 @@ loaded
                     computerScore++
                 }
                 else {
-                    console.log("ROUND NULLIFIED")
+                    console.error("ROUND NULLIFIED")
                 }
+
+                console.log(`humanScore: ${humanScore}, computerScore: ${computerScore}`)
             }
 
         }
